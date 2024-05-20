@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest
 class MyJsFrameworksApplicationTests {
 
 	@Test
-	fun contextLoads() {
+	fun validate_shouldNotThrow() {
+
 	}
 
 }
