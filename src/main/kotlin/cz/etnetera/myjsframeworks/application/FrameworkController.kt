@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 class FrameworkController (@Autowired private val frameworkService: FrameworkService) {
 
     @GetMapping
-    fun findAll() = frameworkService.findAll()
+    fun findAll() = frameworkService.getAll()
 }

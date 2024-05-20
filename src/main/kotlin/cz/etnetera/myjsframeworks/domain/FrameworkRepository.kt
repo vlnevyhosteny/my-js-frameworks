@@ -1,5 +1,6 @@
 package cz.etnetera.myjsframeworks.domain
 
 interface FrameworkRepository {
-    fun findAll(): List<Framework>
+    fun getAll(): List<Framework>
+    fun create(framework: Framework): Framework
 }
