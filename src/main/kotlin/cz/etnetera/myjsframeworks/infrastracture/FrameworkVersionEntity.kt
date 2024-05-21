@@ -9,6 +9,7 @@ import java.util.UUID
 data class FrameworkVersionEntity (
     @Id
     val id: UUID,
+    @Column(unique = true)
     val version: String,
     val deprecationDate: LocalDate,
 

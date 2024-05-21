@@ -8,6 +8,7 @@ import java.util.UUID
 data class FrameworkEntity (
     @Id
     val id: UUID,
+    @Column(unique = true)
     val name: String,
     val ranking: Int,
 

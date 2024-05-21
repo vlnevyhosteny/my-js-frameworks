@@ -30,6 +30,7 @@ dependencies {
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 	testImplementation("org.junit.jupiter:junit-jupiter-params")
 	implementation("com.h2database:h2")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 }
 
 tasks.withType<KotlinCompile> {

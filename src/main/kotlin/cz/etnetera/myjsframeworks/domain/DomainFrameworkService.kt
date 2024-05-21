@@ -7,4 +7,7 @@ class DomainFrameworkService (private val frameworkRepository: FrameworkReposito
     override fun search(input: String): List<Framework> {
         return frameworkRepository.search(input)
     }
+    override fun create(framework: Framework) {
+        frameworkRepository.create(framework)
+    }
 }

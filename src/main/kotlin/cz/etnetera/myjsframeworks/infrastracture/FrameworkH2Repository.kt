@@ -1,9 +1,6 @@
 package cz.etnetera.myjsframeworks.infrastracture
 
-import cz.etnetera.myjsframeworks.domain.Framework
-import cz.etnetera.myjsframeworks.domain.FrameworkRanking
-import cz.etnetera.myjsframeworks.domain.FrameworkRepository
-import cz.etnetera.myjsframeworks.domain.FrameworkVersion
+import cz.etnetera.myjsframeworks.domain.*
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,36 +10,44 @@ import java.util.*
 
 @Component
 @Primary
-class FrameworkH2Repository (
+class FrameworkH2Repository(
     @Autowired private val repository: FrameworkJPARepository,
     @Autowired private val versionRepository: FrameworkVersionJPARepository,
     @PersistenceContext private val entityManager: EntityManager,
 ) : FrameworkRepository {
     override fun getAll(): List<Framework> {
-        return repository.findAll().map { Framework(
-            it.id,
-            it.name,
-            FrameworkRanking(it.ranking),
-            it.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
-            ) }
+        return repository.findAll().map {
+            Framework(
+                it.id,
+                it.name,
+                FrameworkRanking(it.ranking),
+                it.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
+            )
+        }
     }
 
     override fun create(framework: Framework): Framework {
-        val entity = FrameworkEntity (
+        val entity = FrameworkEntity(
             framework.id,
             framework.name,
             framework.ranking.stars,
             null,
         )
 
-        repository.save(entity)
+        try {
+            repository.save(entity)
+        } catch (e: Exception) { // TODO: should be more specific
+            throw ConflictException("Framework with name ${framework.name} already exists")
+        }
 
-        val versions = framework.versions?.map { ver -> FrameworkVersionEntity(
-            UUID.randomUUID(),
-            ver.version,
-            ver.deprecationDate,
-            entity,
-        ) }
+        val versions = framework.versions?.map { ver ->
+            FrameworkVersionEntity(
+                UUID.randomUUID(),
+                ver.version,
+                ver.deprecationDate,
+                entity,
+            )
+        }
         if (versions != null) {
             versionRepository.saveAll(versions)
         }
@@ -67,11 +72,13 @@ class FrameworkH2Repository (
 
         query.select(root).where(entityManager.criteriaBuilder.or(namePredicate, versionPredicate))
 
-        return entityManager.createQuery(query).resultList.map { Framework(
-            it.id,
-            it.name,
-            FrameworkRanking(it.ranking),
-            it.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
-        ) }
+        return entityManager.createQuery(query).resultList.map {
+            Framework(
+                it.id,
+                it.name,
+                FrameworkRanking(it.ranking),
+                it.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
+            )
+        }
     }
 }
