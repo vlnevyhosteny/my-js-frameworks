@@ -4,6 +4,8 @@ import cz.etnetera.myjsframeworks.domain.Framework
 import cz.etnetera.myjsframeworks.domain.FrameworkRanking
 import cz.etnetera.myjsframeworks.domain.FrameworkRepository
 import cz.etnetera.myjsframeworks.domain.FrameworkVersion
+import jakarta.persistence.EntityManager
+import jakarta.persistence.PersistenceContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Component
@@ -14,6 +16,7 @@ import java.util.*
 class FrameworkH2Repository (
     @Autowired private val repository: FrameworkJPARepository,
     @Autowired private val versionRepository: FrameworkVersionJPARepository,
+    @PersistenceContext private val entityManager: EntityManager,
 ) : FrameworkRepository {
     override fun getAll(): List<Framework> {
         return repository.findAll().map { Framework(
@@ -50,5 +53,25 @@ class FrameworkH2Repository (
             FrameworkRanking(entity.ranking),
             framework.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
         )
+    }
+
+    override fun search(input: String): List<Framework> {
+        val query = entityManager.criteriaBuilder.createQuery(FrameworkEntity::class.java)
+        val root = query.from(FrameworkEntity::class.java)
+
+        val namePredicate = entityManager.criteriaBuilder.like(root.get("name"), "%$input%")
+        val versionPredicate = entityManager.criteriaBuilder.like(
+            root.join<FrameworkEntity, FrameworkVersionEntity>("versions").get("version"),
+            "%$input%"
+        )
+
+        query.select(root).where(entityManager.criteriaBuilder.or(namePredicate, versionPredicate))
+
+        return entityManager.createQuery(query).resultList.map { Framework(
+            it.id,
+            it.name,
+            FrameworkRanking(it.ranking),
+            it.versions?.map { ver -> FrameworkVersion(ver.version, ver.deprecationDate) },
+        ) }
     }
 }
