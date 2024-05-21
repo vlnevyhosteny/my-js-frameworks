@@ -38,7 +38,6 @@ class JWTConfiguration {
     private lateinit var privateKey: RSAPrivateKey
 
     @Bean
-    @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .authorizeHttpRequests { requests ->
