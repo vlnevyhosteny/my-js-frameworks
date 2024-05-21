@@ -31,6 +31,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter-params")
 	implementation("com.h2database:h2")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 }
 
 tasks.withType<KotlinCompile> {
