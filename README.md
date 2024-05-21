@@ -18,7 +18,7 @@ App use:
 ## Run
 
 ```bash
-$ ./gradlew bootrur
+$ ./gradlew bootRun
 ```
 
 ## Get Token
