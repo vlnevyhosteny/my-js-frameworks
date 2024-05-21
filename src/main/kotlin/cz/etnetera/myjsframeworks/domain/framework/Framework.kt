@@ -1,4 +1,4 @@
-package cz.etnetera.myjsframeworks.domain
+package cz.etnetera.myjsframeworks.domain.framework
 
 import java.util.UUID
 

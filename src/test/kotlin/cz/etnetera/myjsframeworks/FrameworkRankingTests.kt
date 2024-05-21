@@ -1,7 +1,7 @@
 package cz.etnetera.myjsframeworks
 
-import cz.etnetera.myjsframeworks.domain.DomainException
-import cz.etnetera.myjsframeworks.domain.FrameworkRanking
+import cz.etnetera.myjsframeworks.domain.exception.DomainException
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkRanking
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest

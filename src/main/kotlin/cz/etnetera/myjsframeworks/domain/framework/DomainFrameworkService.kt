@@ -1,4 +1,4 @@
-package cz.etnetera.myjsframeworks.domain
+package cz.etnetera.myjsframeworks.domain.framework
 
 class DomainFrameworkService (private val frameworkRepository: FrameworkRepository) : FrameworkService {
     override fun getAll(): List<Framework> {

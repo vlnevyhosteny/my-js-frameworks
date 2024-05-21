@@ -1,8 +1,8 @@
-package cz.etnetera.myjsframeworks.application
+package cz.etnetera.myjsframeworks.application.framework
 
-import cz.etnetera.myjsframeworks.domain.Framework
-import cz.etnetera.myjsframeworks.domain.FrameworkRanking
-import cz.etnetera.myjsframeworks.domain.FrameworkService
+import cz.etnetera.myjsframeworks.domain.framework.Framework
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkRanking
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkService
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.validation.annotation.Validated

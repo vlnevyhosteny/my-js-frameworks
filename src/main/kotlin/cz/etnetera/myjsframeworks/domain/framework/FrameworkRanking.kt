@@ -1,4 +1,6 @@
-package cz.etnetera.myjsframeworks.domain
+package cz.etnetera.myjsframeworks.domain.framework
+
+import cz.etnetera.myjsframeworks.domain.exception.DomainException
 
 data class FrameworkRanking(val stars: Int) {
     fun validate() {

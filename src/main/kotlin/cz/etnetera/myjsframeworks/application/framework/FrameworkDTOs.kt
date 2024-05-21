@@ -1,4 +1,4 @@
-package cz.etnetera.myjsframeworks.application
+package cz.etnetera.myjsframeworks.application.framework
 
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min

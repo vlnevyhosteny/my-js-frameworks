@@ -1,6 +1,6 @@
 package cz.etnetera.myjsframeworks.application
 
-import cz.etnetera.myjsframeworks.domain.ConflictException
+import cz.etnetera.myjsframeworks.domain.exception.ConflictException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler

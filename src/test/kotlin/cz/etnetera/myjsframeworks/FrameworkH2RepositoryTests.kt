@@ -1,6 +1,6 @@
 package cz.etnetera.myjsframeworks
 
-import cz.etnetera.myjsframeworks.domain.FrameworkRepository
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkRepository
 import cz.etnetera.myjsframeworks.infrastracture.BeanConfiguration
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

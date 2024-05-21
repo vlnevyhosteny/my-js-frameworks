@@ -1,4 +1,4 @@
-package cz.etnetera.myjsframeworks.domain
+package cz.etnetera.myjsframeworks.domain.framework
 
 interface FrameworkRepository {
     fun getAll(): List<Framework>

@@ -1,6 +1,5 @@
-package cz.etnetera.myjsframeworks.infrastracture
+package cz.etnetera.myjsframeworks.infrastracture.jpa
 
-import cz.etnetera.myjsframeworks.domain.Framework
 import jakarta.persistence.*
 import java.time.LocalDate
 import java.util.UUID

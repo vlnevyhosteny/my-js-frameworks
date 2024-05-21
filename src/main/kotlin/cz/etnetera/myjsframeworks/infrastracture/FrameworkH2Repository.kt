@@ -1,6 +1,14 @@
 package cz.etnetera.myjsframeworks.infrastracture
 
-import cz.etnetera.myjsframeworks.domain.*
+import cz.etnetera.myjsframeworks.domain.exception.ConflictException
+import cz.etnetera.myjsframeworks.domain.framework.Framework
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkRanking
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkRepository
+import cz.etnetera.myjsframeworks.domain.framework.FrameworkVersion
+import cz.etnetera.myjsframeworks.infrastracture.jpa.FrameworkEntity
+import cz.etnetera.myjsframeworks.infrastracture.jpa.FrameworkJPARepository
+import cz.etnetera.myjsframeworks.infrastracture.jpa.FrameworkVersionEntity
+import cz.etnetera.myjsframeworks.infrastracture.jpa.FrameworkVersionJPARepository
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import org.springframework.beans.factory.annotation.Autowired
